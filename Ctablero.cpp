@@ -77,7 +77,7 @@ void Ctablero::UpdateTableroColor()
             switch (tablero[i][j])
             {
             case 0: 
-                tableroShape[i][j].setFillColor(sf::Color(50, 50, 50));
+                tableroShape[i][j].setFillColor(sf::Color(110, 109, 109));
                 break;
             case -1: 
                 tableroShape[i][j].setFillColor(NewParteColor);
