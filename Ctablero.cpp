@@ -1,68 +1,120 @@
 #include "Ctablero.hpp"
-using namespace std; 
-using namespace sf; 
 
+using namespace sf; 
+using namespace std; 
 
 Ctablero::Ctablero()
 {
-    memset(tablero,0,sizeof(tablero));
-    for(int i=0; i<20 ; i++ )
+    
+    for (int i = 0; i < 20; ++i)
     {
-        for(int j=0; j<20 ; j++ )
+        for (int j = 0; j < 10; ++j)
         {
-            tableroShape[i][j]=RectangleShape(Vector2f(20,20));
-            tableroShape[i][j].setPosition(j*20, i*20);
-            tableroShape[i][j].setFillColor(Color(50,50,50));
-            tableroShape[i][j].setOutlineThickness(2);
-            tableroShape[i][j].setOutlineColor(Color(0,0,0));
+            tablero[i][j] = 0;
+
+            
+            tableroShape[i][j] = sf::RectangleShape(sf::Vector2f(20.f, 20.f));
+            tableroShape[i][j].setPosition(j * 20.f, i * 20.f);
+            tableroShape[i][j].setFillColor(sf::Color(50, 50, 50));
+            tableroShape[i][j].setOutlineThickness(2.f);
+            tableroShape[i][j].setOutlineColor(sf::Color(0, 0, 0));
         }
     }
 }
-    void Ctablero::UpdateTableroColor()
+
+bool Ctablero::InstalarPartes()
+{
+    srand(time(NULL)); 
+    indNewParte = rand() % 7; 
+
+
+    vector<vector<bool>> parte = partes.ConsultPart(indNewParte);
+    int sz = (int)parte.size();
+
+
+    indY = 0;
+    indX = 5 - sz / 2;
+
+
+    for (int i = 0; i < sz; i++)
     {
-            for(int i=0; i<20 ; i++ )
+        for (int j = 0; j < sz; j++)
+        {
+            if (parte[i][j])
+            {
+                if (tablero[i + indY][j + indX] > 0)
+                    return false; 
+                tablero[i + indY][j + indX] = -1; 
+            }
+        }
+    }
+
+    
+    int color = 1 + rand() % 7;
+    indColorNewParte = color;
+
+    switch (color)
     {
-        for(int j=0; j<20 ; j++ )
+    case 1: NewParteColor = sf::Color(255, 166, 0); break;
+    case 2: NewParteColor = sf::Color(245, 152, 245); break;
+    case 3: NewParteColor = sf::Color(51, 204, 153); break;
+    case 4: NewParteColor = sf::Color(255, 110, 110); break;
+    case 5: NewParteColor = sf::Color(255, 204, 77); break;
+    case 6: NewParteColor = sf::Color(166, 166, 255); break;
+    case 7: NewParteColor = sf::Color(138, 194, 247); break;
+    default: break;
+    }
+
+    return true;
+}
+
+void Ctablero::UpdateTableroColor()
+{
+    for (int i = 0; i < 20; ++i)
+    {
+        for (int j = 0; j < 10; ++j)
         {
             switch (tablero[i][j])
             {
             case 0: 
-                tableroShape[i][j].setFillColor(Color(50,50,50));
+                tableroShape[i][j].setFillColor(sf::Color(50, 50, 50));
                 break;
-             case 1: 
-                tableroShape[i][j].setFillColor(Color(255,166,0));
+            case -1: 
+                tableroShape[i][j].setFillColor(NewParteColor);
                 break;
-             case 2: 
-                tableroShape[i][j].setFillColor(Color(245,152,245));
+            case 1:
+                tableroShape[i][j].setFillColor(sf::Color(255, 166, 0));
                 break;
-             case 3: 
-                tableroShape[i][j].setFillColor(Color(51,204,153));
+            case 2:
+                tableroShape[i][j].setFillColor(sf::Color(245, 152, 245));
                 break;
-             case 4: 
-                tableroShape[i][j].setFillColor(Color(255,110,110));
+            case 3:
+                tableroShape[i][j].setFillColor(sf::Color(51, 204, 153));
                 break;
-             case 5: 
-                tableroShape[i][j].setFillColor(Color(255,204,77));
+            case 4:
+                tableroShape[i][j].setFillColor(sf::Color(255, 110, 110));
                 break;
-             case 6: 
-                tableroShape[i][j].setFillColor(Color(166,166,255));
+            case 5:
+                tableroShape[i][j].setFillColor(sf::Color(255, 204, 77));
                 break;
-             case 7: 
-                tableroShape[i][j].setFillColor(Color(138,194,247));
+            case 6:
+                tableroShape[i][j].setFillColor(sf::Color(166, 166, 255));
                 break;
-            
+            case 7:
+                tableroShape[i][j].setFillColor(sf::Color(138, 194, 247));
+                break;
             }
         }
     }
-    }
-void Ctablero::draw(RenderTarget &rt, RenderStates rs) const
+}
+
+void Ctablero::draw(sf::RenderTarget& rt, sf::RenderStates rs) const
 {
-  for(int i=0; i<20 ; i++ )
+    for (int i = 0; i < 20; ++i)
     {
-        for(int j=0; j<20 ; j++ )
+        for (int j = 0; j < 10; ++j)
         {
             rt.draw(tableroShape[i][j], rs);
         }
     }
 }
-

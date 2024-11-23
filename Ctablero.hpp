@@ -1,14 +1,20 @@
-#include <iostream>
+#include "Cpartes.hpp"
 #include <SFML/Graphics.hpp>
 #include <cstring>
+#include <time.h>
 
-class Ctablero : public Drawable
+class Ctablero : public sf::Drawable
 {
-    private:
-    int tablero [20][10];
-    RectangleShape tableroShape[20][10];
-    public:
+private:
+    int tablero[20][10]; 
+    sf::RectangleShape tableroShape[20][10]; 
+    Cpartes partes; 
+    int indX, indY; 
+    int indNewParte, indColorNewParte;
+    sf::Color NewParteColor;  
+public:
     Ctablero();
     void UpdateTableroColor();
-    virtual void draw(RenderTarget&, RenderStates) const;
+    virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+    bool InstalarPartes();
 };
