@@ -21,9 +21,11 @@ int main()
                 window.close();
         }
 
+        if(tablero.UpdateTablero())
+        {
+            tablero.InstalarPartes();
+        }
         tablero.UpdateTableroColor();
-
-       
         window.clear(sf::Color(20, 20, 20));
         window.draw(tablero);
         window.display();

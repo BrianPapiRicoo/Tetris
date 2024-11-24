@@ -22,6 +22,77 @@ Ctablero::Ctablero()
     }
 }
 
+bool Ctablero::UpdateTablero()
+{
+    bool limite = false; 
+    int cont = 0;
+
+    if (timer >= limite_de_timer)
+    {
+        for (int i = 18; i >= 0; i--)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (tablero[i][j] == -1 && i + 1 < 20 && tablero[i + 1][j] <= 0)
+                {
+                    cont++;
+                }
+            }
+        }
+
+        if (cont == 4)
+        {
+            indY++; 
+            for (int i = 18; i >= 0; i--)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (tablero[i][j] == -1 && i + 1 < 20)
+                    {
+                        tablero[i][j] = 0;
+                        tablero[i + 1][j] = -1;
+                    }
+                }
+            }
+
+            cont = 0; 
+            for (int i = 18; i >= 0; i--)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (tablero[i][j] == -1 && i + 1 < 20 && tablero[i + 1][j] <= 0)
+                    {
+                        cont++;
+                    }
+                }
+            }
+
+            if (cont != 4)
+            {
+                for (int i = 19; i >= 0; i--)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {  
+                        if (tablero[i][j] == -1)
+                        {
+                            tablero[i][j] = indColorNewParte; // Arreglo del operador
+                        }
+                    }
+                }
+                limite = true; 
+            }
+        }
+        else
+        {
+            limite = true; 
+        }
+
+        timer = 0; 
+    }
+    timer++; 
+    return limite; 
+}
+
 bool Ctablero::InstalarPartes()
 {
     srand(time(NULL)); 

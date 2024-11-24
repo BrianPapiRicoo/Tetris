@@ -12,9 +12,12 @@ private:
     int indX, indY; 
     int indNewParte, indColorNewParte;
     sf::Color NewParteColor;  
+    int timer = 0;
+    int limite_de_timer = 10;
 public:
     Ctablero();
     void UpdateTableroColor();
+    bool UpdateTablero();
     virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
     bool InstalarPartes();
 };
