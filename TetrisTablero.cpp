@@ -12,7 +12,7 @@ TetrisTablero::TetrisTablero() {
 
            
             tableroShape[fila][columna].setOutlineThickness(2.f);
-            tableroShape[fila][columna].setOutlineColor(sf::Color(255, 255, 255));
+            tableroShape[fila][columna].setOutlineColor(sf::Color(0, 0, 0));
         }
     }
 }
