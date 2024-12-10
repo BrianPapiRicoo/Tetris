@@ -1,7 +1,26 @@
 
-Game: Main.cpp TetrisPartes.cpp TetrisTablero.cpp IU.cpp
-	g++ Main.cpp TetrisTablero.cpp TetrisPartes.cpp IU.cpp -lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -o Game
+SOURCES = src/Main.cpp src/TetrisTablero.cpp src/TetrisPartes.cpp src/IU.cpp src/Sonido.cpp
+
+
+INCLUDE_DIR = include
+BIN_DIR = bin
+DATA_DIR = data
+
+
+OUTPUT = $(BIN_DIR)/Game
+
+
+CXXFLAGS = -I$(INCLUDE_DIR) -lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio
+
+
+$(OUTPUT): $(SOURCES)
+	mkdir -p $(BIN_DIR)
+	g++ $(SOURCES) $(CXXFLAGS) -o $(OUTPUT)
 
 
 clean:
-	rm -f Game
+	rm -f $(OUTPUT)
+
+
+run: $(OUTPUT)
+	cd $(BIN_DIR) && ./Game

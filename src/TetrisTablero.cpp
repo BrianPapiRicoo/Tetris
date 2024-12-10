@@ -1,4 +1,4 @@
-#include "TetrisTablero.hpp"
+#include "../include/TetrisTablero.hpp"
 
 TetrisTablero::TetrisTablero() {
     memset(tablero, 0, sizeof(tablero));
@@ -45,9 +45,9 @@ bool TetrisTablero::InstalarPartes() {
         case 1: NewParteColor = sf::Color(255, 105, 180); break; // Rosa 
         case 2: NewParteColor = sf::Color(0, 255, 255); break;   // Cian 
         case 3: NewParteColor = sf::Color(255, 215, 0); break;   // Amarillo 
-        case 4: NewParteColor = sf::Color(255, 69, 0); break;    // Rocolumnao 
+        case 4: NewParteColor = sf::Color(255, 69, 0); break;    // Naranja 
         case 5: NewParteColor = sf::Color(124, 252, 0); break;   // Verde
-        case 6: NewParteColor = sf::Color(75, 0, 130); break;    // Purpura 
+        case 6: NewParteColor = sf::Color(194, 140, 255); break;  // lila
         case 7: NewParteColor = sf::Color(30, 144, 255); break;  // Azul 
     }
 
@@ -105,22 +105,22 @@ void TetrisTablero::ActualizarColoresTablero() {
                     tableroShape[fila][columna].setFillColor(sf::Color(255, 105, 180)); // Rosa intenso
                     break;
                 case 2: 
-                    tableroShape[fila][columna].setFillColor(sf::Color(0, 255, 255)); // Cian brillante
+                    tableroShape[fila][columna].setFillColor(sf::Color(0, 255, 255)); //Cian 
                     break;
                 case 3: 
-                    tableroShape[fila][columna].setFillColor(sf::Color(255, 215, 0)); // Amarillo dorado
+                    tableroShape[fila][columna].setFillColor(sf::Color(255, 215, 0)); //Amarillo 
                     break;
                 case 4: 
-                    tableroShape[fila][columna].setFillColor(sf::Color(255, 69, 0)); // Rocolumnao anarancolumnaado
+                    tableroShape[fila][columna].setFillColor(sf::Color(255, 69, 0)); //Naranja
                     break;
                 case 5: 
-                    tableroShape[fila][columna].setFillColor(sf::Color(124, 252, 0)); // Verde brillante
+                    tableroShape[fila][columna].setFillColor(sf::Color(124, 252, 0)); //Verde 
                     break;
                 case 6: 
-                    tableroShape[fila][columna].setFillColor(sf::Color(75, 0, 130)); // Púrpura vibrante
+                    tableroShape[fila][columna].setFillColor(sf::Color(194, 140, 255)); //Lila
                     break;
                 case 7: 
-                    tableroShape[fila][columna].setFillColor(sf::Color(30, 144, 255)); // Azul brillante
+                    tableroShape[fila][columna].setFillColor(sf::Color(30, 144, 255)); //Azul 
                     break;
                 default: 
                     tableroShape[fila][columna].setFillColor(NewParteColor); 

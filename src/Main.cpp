@@ -1,7 +1,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "TetrisTablero.hpp"
-#include "IU.hpp"
+#include "../include/TetrisTablero.hpp"
+#include "../include/IU.hpp"
+#include "../include/Sonido.hpp"
 #include <fstream>
 
 using namespace std;
@@ -10,6 +11,7 @@ using namespace sf;
 int main() {
     TetrisTablero tablero;
     IU iu;
+    Sonido sonido;
 
     RenderWindow window(VideoMode(400, 400), "Tetrix");
     window.setFramerateLimit(60);
@@ -20,13 +22,25 @@ int main() {
     int puntaje = 0;
     int maxPuntaje = 0;
 
-    // Leer el puntaje maximo 
-    ifstream entrada("MaxPuntaje.txt");
+    //ChillGuy
+    Texture texturaImagen;
+    if (!texturaImagen.loadFromFile("../data/ChillGuyP.png")) {
+        cout << "Error al cargar la imagen 'ChillGuyP.png'" << endl;
+        return -1;
+    }
+    Sprite spriteImagen;
+    spriteImagen.setTexture(texturaImagen);
+    spriteImagen.setPosition(265, 277); 
+    spriteImagen.setScale(0.3f, 0.3f);
+
+    // Leer el puntaje maximo
+    ifstream entrada("../data/MaxPuntaje.txt");
     entrada >> maxPuntaje;
+
     iu.EstablecerMaxPuntaje(maxPuntaje);
     iu.EstablecerPuntaje(puntaje);
-
-    bool enVivo = true;
+    bool live = true;
+    sonido.ReproducirMusica();
 
     while (window.isOpen()) {
         Event evento;
@@ -34,7 +48,7 @@ int main() {
             if (evento.type == Event::Closed) window.close();
         }
 
-        if (enVivo) {
+        if (live) {
             // Rotar
             if (Keyboard::isKeyPressed(Keyboard::Up) && !arriba) {
                 tablero.RotarParte();
@@ -43,9 +57,9 @@ int main() {
                 arriba = false;
             }
 
-            // Acelerar caida
+            // Acelerar
             if (Keyboard::isKeyPressed(Keyboard::Down)) {
-                tablero.ActualizarLimiteTimer(5); // Baja más rápido
+                tablero.ActualizarLimiteTimer(5); // Mas velocidad
             } else {
                 tablero.ActualizarLimiteTimer(30); // Velocidad normal
             }
@@ -75,32 +89,33 @@ int main() {
             // Actualizar tablero
             if (tablero.ActualizarTablero()) {
                 if (!tablero.InstalarPartes()) {
-                    enVivo = false;
+                    live = false;
                     tablero.LimpiarTablero();
-
-                    // Verificar si hay nuevo puntaje maximo
+                    sonido.PausarMusica();
                     if (puntaje > maxPuntaje) {
                         iu.NuevoPuntajeMarcado();
-                        ofstream salida("MaxPuntaje.txt");
+                        ofstream salida("../data/MaxPuntaje.txt");
                         salida << puntaje;
+                        sonido.ReproducirNuevoPuntaje();
                     } else {
                         iu.FinDeJuego();
+                        sonido.ReproducirFinJuego();
                     }
                 }
             }
             tablero.ActualizarColoresTablero();
-
-            // Revisar lineas completadas y actualizar puntaje
+            // Revisar lineas y actualizar puntaje
             int nuevoPuntaje = tablero.RevisarLineas() * 5;
             puntaje += nuevoPuntaje;
             iu.EstablecerPuntaje(puntaje);
+            // Sonido linea
+            if (nuevoPuntaje > 0) {
+                sonido.ReproducirLinea();
+            }
         }
-
-        // Actualizar el color del texto "TETRIX"
         iu.ActualizarColorTetrix();
-
-        // Dibujar en la ventana
         window.clear(Color(20, 20, 20));
+        window.draw(spriteImagen); 
         window.draw(tablero);
         window.draw(iu);
         window.display();

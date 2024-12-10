@@ -1,7 +1,7 @@
 #include "IU.hpp"
 
 IU::IU() {
-    if (!Fuente.loadFromFile("Animal.otf")) {
+    if (!Fuente.loadFromFile("../data/Animal.otf")) {
         cout << "Error al cargar fuente de texto" << endl;
     }
 
@@ -39,13 +39,13 @@ IU::IU() {
 
     TextoFinJuego.setFont(Fuente);
     TextoFinJuego.setFillColor(Color::White);
-    TextoFinJuego.setPosition(Vector2f(25, 150));
+    TextoFinJuego.setPosition(Vector2f(31, 150));
     TextoFinJuego.setString("Game Over ");
     TextoFinJuego.setCharacterSize(25);
 
     TextoNuevoPuntaje.setFont(Fuente);
     TextoNuevoPuntaje.setFillColor(Color::White);
-    TextoNuevoPuntaje.setPosition(Vector2f(8, 150));
+    TextoNuevoPuntaje.setPosition(Vector2f(32, 150));
     TextoNuevoPuntaje.setString("New Score");
     TextoNuevoPuntaje.setCharacterSize(25);
 }
