@@ -12,6 +12,12 @@ int main() {
     TetrisTablero tablero;
     IU iu;
     Sonido sonido;
+    Texture TexturaChillGuy;
+    Texture TexturaRotate;
+    Sprite SpriteChillGuy;
+    Sprite SpriteRotate;
+    Texture TexturaSpeed;
+    Sprite SpriteSpeed;
 
     RenderWindow window(VideoMode(400, 400), "Tetrix");
     window.setFramerateLimit(60);
@@ -23,36 +29,30 @@ int main() {
     int maxPuntaje = 0;
 
     // ChillGuy
-    Texture TexturaChillGuy;
     if (!TexturaChillGuy.loadFromFile("../data/ChillGuyP.png")) {
         cout << "Error al cargar la imagen 'ChillGuyP.png'" << endl;
         return -1;
     }
-    Sprite SpriteChillGuy;
     SpriteChillGuy.setTexture(TexturaChillGuy);
-    SpriteChillGuy.setPosition(265, 277);
-    SpriteChillGuy.setScale(0.3f, 0.3f);
+    SpriteChillGuy.setPosition(265, 145);
+    SpriteChillGuy.setScale(0.27f, 0.27f);
 
     // Rotate
-    Texture TexturaRotate;
     if (!TexturaRotate.loadFromFile("../data/rotate.png")) {
         cout << "Error al cargar la imagen 'rotate.png'" << endl;
         return -1;
     }
-    Sprite SpriteRotate;
     SpriteRotate.setTexture(TexturaRotate);
-    SpriteRotate.setPosition(300, 155); // Posición ajustada
+    SpriteRotate.setPosition(300, 288); 
     SpriteRotate.setScale(0.17f, 0.17f);
 
     // Speed
-    Texture TexturaSpeed;
     if (!TexturaSpeed.loadFromFile("../data/Speed.png")) {
         cout << "Error al cargar la imagen 'Speed.png'" << endl;
         return -1;
     }
-    Sprite SpriteSpeed;
     SpriteSpeed.setTexture(TexturaSpeed);
-    SpriteSpeed.setPosition(205, 158); // Posicion ajustada
+    SpriteSpeed.setPosition(205, 290); // Posicion ajustada
     SpriteSpeed.setScale(0.17f, 0.17f);
 
     // Leer el puntaje maximo
