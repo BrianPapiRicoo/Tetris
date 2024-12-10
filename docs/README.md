@@ -40,7 +40,7 @@ La clase `Sonido` administra los efectos sonoros y la música:
 ### **Biblioteca**
 - **SFML**  versión 2.5.1 o superior.
 ## **Ejecucion** 
-Ejecuta el proyecto directamente de la carpte **bin** y escribe en la terminal de bash:
+Ejecuta el proyecto directamente de la carpeta **bin** y escribe en la terminal de bash:
 - **make run**
 o manualmente usando: 
 - **/bin/Game**
@@ -55,24 +55,4 @@ Asegúrate de que los siguientes archivos estén en las rutas correctas:
   - `MaxPuntaje.txt` (Archivo para almacenar puntajes)
 
 ## Organización del proyecto
-TETRIS/
-├── bin/                 # Binarios generados (ejecutable)
-├── data/                # Archivos de datos (fuentes, imágenes, sonidos)
-│   ├── Animal.otf
-│   ├── ChillGuyP.png
-│   ├── MusicaFondo.ogg
-│   ├── NuevaLinea.ogg
-│   ├── MaxPuntaje.txt
-├── docs/                # Documentación (README.md, etc.)
-├── include/             # Archivos de encabezado (.hpp)
-│   ├── IU.hpp
-│   ├── Sonido.hpp
-│   ├── TetrisPartes.hpp
-│   ├── TetrisTablero.hpp
-├── src/                 # Archivos fuente (.cpp)
-│   ├── Main.cpp
-│   ├── IU.cpp
-│   ├── Sonido.cpp
-│   ├── TetrisPartes.cpp
-│   ├── TetrisTablero.cpp
-└── Makefile             # Archivo para facilitar la compilación
+TETRIS/ ├── bin/ # Binarios generados (ejecutable) │ └── Game.exe ├── data/ # Archivos de datos (fuentes, imágenes, sonidos) │ ├── Animal.otf │ ├── ChillGuyP.png │ ├── MusicaFondo.ogg │ ├── NuevaLinea.ogg │ └── MaxPuntaje.txt ├── docs/ # Documentación (README.md, etc.) │ └── README.md ├── include/ # Archivos de encabezado (.hpp) │ ├── IU.hpp │ ├── Sonido.hpp │ ├── TetrisPartes.hpp │ └── TetrisTablero.hpp ├── src/ # Archivos fuente (.cpp) │ ├── Main.cpp │ ├── IU.cpp │ ├── Sonido.cpp │ ├── TetrisPartes.cpp │ └── TetrisTablero.cpp └── Makefile # Archivo para facilitar la compilación
