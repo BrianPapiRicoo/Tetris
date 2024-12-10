@@ -22,16 +22,38 @@ int main() {
     int puntaje = 0;
     int maxPuntaje = 0;
 
-    //ChillGuy
-    Texture texturaImagen;
-    if (!texturaImagen.loadFromFile("../data/ChillGuyP.png")) {
+    // ChillGuy
+    Texture TexturaChillGuy;
+    if (!TexturaChillGuy.loadFromFile("../data/ChillGuyP.png")) {
         cout << "Error al cargar la imagen 'ChillGuyP.png'" << endl;
         return -1;
     }
-    Sprite spriteImagen;
-    spriteImagen.setTexture(texturaImagen);
-    spriteImagen.setPosition(265, 277); 
-    spriteImagen.setScale(0.3f, 0.3f);
+    Sprite SpriteChillGuy;
+    SpriteChillGuy.setTexture(TexturaChillGuy);
+    SpriteChillGuy.setPosition(265, 277);
+    SpriteChillGuy.setScale(0.3f, 0.3f);
+
+    // Rotate
+    Texture TexturaRotate;
+    if (!TexturaRotate.loadFromFile("../data/rotate.png")) {
+        cout << "Error al cargar la imagen 'rotate.png'" << endl;
+        return -1;
+    }
+    Sprite SpriteRotate;
+    SpriteRotate.setTexture(TexturaRotate);
+    SpriteRotate.setPosition(300, 155); // Posición ajustada
+    SpriteRotate.setScale(0.17f, 0.17f);
+
+    // Speed
+    Texture TexturaSpeed;
+    if (!TexturaSpeed.loadFromFile("../data/Speed.png")) {
+        cout << "Error al cargar la imagen 'Speed.png'" << endl;
+        return -1;
+    }
+    Sprite SpriteSpeed;
+    SpriteSpeed.setTexture(TexturaSpeed);
+    SpriteSpeed.setPosition(205, 158); // Posicion ajustada
+    SpriteSpeed.setScale(0.17f, 0.17f);
 
     // Leer el puntaje maximo
     ifstream entrada("../data/MaxPuntaje.txt");
@@ -104,18 +126,23 @@ int main() {
                 }
             }
             tablero.ActualizarColoresTablero();
-            // Revisar lineas y actualizar puntaje
+            // Revisar líneas y actualizar puntaje
             int nuevoPuntaje = tablero.RevisarLineas() * 5;
             puntaje += nuevoPuntaje;
             iu.EstablecerPuntaje(puntaje);
-            // Sonido linea
+            // Sonido línea
             if (nuevoPuntaje > 0) {
                 sonido.ReproducirLinea();
             }
         }
         iu.ActualizarColorTetrix();
         window.clear(Color(20, 20, 20));
-        window.draw(spriteImagen); 
+
+        // Dibujar sprites
+        window.draw(SpriteChillGuy);
+        window.draw(SpriteRotate);
+        window.draw(SpriteSpeed);
+
         window.draw(tablero);
         window.draw(iu);
         window.display();
