@@ -55,4 +55,26 @@ Asegúrate de que los siguientes archivos estén en las rutas correctas:
   - `MaxPuntaje.txt` (Archivo para almacenar puntajes)
 
 ## Organización del proyecto
-TETRIS/ ├── bin/ # Binarios generados (ejecutable) │ └── Game.exe ├── data/ # Archivos de datos (fuentes, imágenes, sonidos) │ ├── Animal.otf │ ├── ChillGuyP.png │ ├── MusicaFondo.ogg │ ├── NuevaLinea.ogg │ └── MaxPuntaje.txt ├── docs/ # Documentación (README.md, etc.) │ └── README.md ├── include/ # Archivos de encabezado (.hpp) │ ├── IU.hpp │ ├── Sonido.hpp │ ├── TetrisPartes.hpp │ └── TetrisTablero.hpp ├── src/ # Archivos fuente (.cpp) │ ├── Main.cpp │ ├── IU.cpp │ ├── Sonido.cpp │ ├── TetrisPartes.cpp │ └── TetrisTablero.cpp └── Makefile # Archivo para facilitar la compilación
+###TETRIS/  
+├── bin/  
+│   ├── Game.exe                  
+├── data/                
+│   ├── Animal.otf  
+│   ├── ChillGuyP.png  
+│   ├── MusicaFondo.ogg  
+│   ├── NuevaLinea.ogg  
+│   ├── MaxPuntaje.txt  
+├── docs/      
+│   ├── README.md              
+├── include/               
+│   ├── IU.hpp  
+│   ├── Sonido.hpp  
+│   ├── TetrisPartes.hpp  
+│   ├── TetrisTablero.hpp  
+├── src/                   
+│   ├── Main.cpp  
+│   ├── IU.cpp  
+│   ├── Sonido.cpp  
+│   ├── TetrisPartes.cpp  
+│   ├── TetrisTablero.cpp  
+└── Makefile             
