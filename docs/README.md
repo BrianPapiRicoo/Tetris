@@ -1,7 +1,6 @@
 # Tetrix
 
 ![Vista previa de Tetrix](./Tetrix.png)
-![Vista previa del Gameplay](./GamePlay.png)
 
 Bienvenido a **Tetrix**, un emocionante juego inspirado en el clásico Tetris desarrollado en C++ usando la biblioteca **SFML**.
 
@@ -38,15 +37,17 @@ La clase `Sonido` administra los efectos sonoros y la música:
 - **ChillGuy:** Un personaje para motivarte!
 - **Rotate y Speed:** Indicadores visuales para mejorar la experiencia del jugador.
 
-## Requisitos
-
-### **Biblioteca**
-- **SFML**  versión 2.5.1 o superior.
 ## **Ejecucion** 
 Ejecuta el proyecto directamente de la carpeta **bin** y escribe en la terminal de bash:
 - **make run**
 o manualmente usando: 
 - **/bin/Game**
+![Vista previa del Gameplay](./GamePlay.png)
+
+## Requisitos
+
+### **Biblioteca**
+- **SFML**  versión 2.5.1 o superior.
 
 
 ### **Archivos necesarios**
