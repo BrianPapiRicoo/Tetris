@@ -6,8 +6,10 @@ Bienvenido a **Tetrix**, un emocionante juego inspirado en el clásico Tetris de
 
 ## Descripción
 
-Tetrix es una reinvención moderna del clásico juego de bloques, con gráficos dinámicos, sonidos envolventes y una interfaz visualmente atractiva. Experimenta la emoción de completar líneas mientras compites para superar tu propio puntaje máximo.
+Tetrix es una reinvención moderna del clásico juego de bloques, con gráficos dinámicos, sonidos envolventes y una interfaz visualmente atractiva. Experimenta la emoción de completar líneas mientras compites para superar tu propio puntaje máximo.  
 
+## Autor  
+- Brian Prado  
 ## Características principales
 
 ### 1. **Interfaz de usuario (IU)**
