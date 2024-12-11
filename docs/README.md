@@ -1,6 +1,6 @@
 # Tetrix
 
-![Vista previa de Tetrix](docs/Tetrix.png)
+![Vista previa de Tetrix](./Tetrix.png)
 
 Bienvenido a **Tetrix**, un emocionante juego inspirado en el clásico Tetris desarrollado en C++ usando la biblioteca **SFML**.
 
