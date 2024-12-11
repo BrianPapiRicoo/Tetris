@@ -39,8 +39,8 @@ La clase `Sonido` administra los efectos sonoros y la música:
 
 ## **Ejecucion** 
 Ejecuta el proyecto directamente de la carpeta **bin** y escribe en la terminal de bash:
-- **make run**
-o manualmente usando: 
+- **make run**  
+o manualmente usando:   
 - **/bin/Game**  
 
 ![Vista previa del Gameplay](./GamePlay.png)
