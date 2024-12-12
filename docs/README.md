@@ -1,91 +1,93 @@
 # Tetrix
 
-![Vista previa de Tetrix](./Tetrix.png)
+![Tetrix Preview](./Tetrix.png)
 
-Bienvenido a **Tetrix**, un emocionante juego inspirado en el clásico Tetris desarrollado en C++ usando la biblioteca **SFML**.
+Welcome to **Tetrix**, an exciting game inspired by the classic Tetris, developed in C++ using the **SFML** library.
 
-## Descripción
+## Description
 
-Tetrix es una reinvención moderna del clásico juego de bloques, con gráficos dinámicos, sonidos envolventes y una interfaz visualmente atractiva. Experimenta la emoción de completar líneas mientras compites para superar tu propio puntaje máximo.  
+Tetrix is a modern reinvention of the classic block game, featuring dynamic graphics, immersive sounds, and a visually appealing interface. Experience the thrill of completing lines while striving to beat your own high score.
 
-## Autor  
+## Author  
 - Brian Prado  
-## Características principales
 
-### 1. **Interfaz de usuario (IU)**
-La clase `IU` administra la presentación visual del juego:
-- Muestra el puntaje actual y el puntaje máximo.
-- Cambia dinámicamente el color del título "TETRIX".
-- Incluye mensajes como "Game Over" y "New Score".
-- Utiliza una fuente personalizada (`Animal.otf`).
+## Key Features
 
-### 2. **Tablero**
-La clase `TetrisTablero` administra el funcionamiento interno del juego:
-- Controla la posición, movimientos y rotaciones de las piezas.
-- Detecta y limpia líneas completadas.
-- Cambia dinámicamente los colores de las piezas y el tablero.
+### 1. **User Interface (UI)**
+The `IU` class manages the visual presentation of the game:
+- Displays the current score and the high score.
+- Dynamically changes the color of the "TETRIX" title.
+- Includes messages such as "Game Over" and "New Score."
+- Utilizes a custom font (`Animal.otf`).
 
-### 3. **Piezas Tetris**
-La clase `TetrisPartes` contiene las formas y transformaciones de las piezas:
-- Maneja varias formas clásicas como cuadrado, línea, Z, S, L, J y T.
-- Implementa rotaciones precisas para cada pieza.
+### 2. **Game Board**
+The `TetrisTablero` class handles the game's internal functionality:
+- Controls the position, movements, and rotations of the pieces.
+- Detects and clears completed lines.
+- Dynamically changes the colors of the pieces and the board.
 
-### 4. **Sonidos**
-La clase `Sonido` administra los efectos sonoros y la música:
-- Música de fondo (`MusicaFondo.ogg`).
-- Efectos de sonido para eventos como completar líneas (`NuevaLinea.ogg`), nuevo puntaje máximo y fin de juego (`ChillGuy.ogg`).
+### 3. **Tetris Pieces**
+The `TetrisPartes` class contains the shapes and transformations of the pieces:
+- Manages various classic shapes like square, line, Z, S, L, J, and T.
+- Implements precise rotations for each piece.
+
+### 4. **Sounds**
+The `Sonido` class manages sound effects and music:
+- Background music (`MusicaFondo.ogg`).
+- Sound effects for events like clearing lines (`NuevaLinea.ogg`), achieving a new high score, and game over (`ChillGuy.ogg`).
 
 ### 5. **Sprites**
-- **ChillGuy:** Un personaje para motivarte!
-- **Rotate y Speed:** Indicadores visuales para mejorar la experiencia del jugador.
+- **ChillGuy:** A character to keep you motivated!
+- **Rotate and Speed:** Visual indicators to enhance the player experience.
 
-## **Ejecucion** 
-Ejecuta el proyecto directamente de la carpeta **bin** y escribe en la terminal de bash:
+## **Execution** 
+Run the project directly from the **bin** folder and type the following in the bash terminal:
 - **make run**  
-o manualmente usando:   
+or manually using:   
 - **/bin/Game**  
 
-![Vista previa del Gameplay](./GamePlay.png)  
-## Controles  
-- Flecha Derecha e Izquierda -> Mover la pieza a la derecha o izquierda  
-- Flecha hacia Arriba -> Rotar la pieza  
-- Flecha hacia Abajo -> Incrementa la velocidad de caida  
-![Vista previa de Controles](./Flechitas.png)  
-## Requisitos
+![Gameplay Preview](./GamePlay.png)  
 
-### **Biblioteca**
-- **SFML**  versión 2.5.1 o superior.
+## Controls    
+- Right and Left Arrow -> Move the piece right or left    
+- Up Arrow -> Rotate the piece    
+- Down Arrow -> Increases drop speed    
+![Controls Preview](./Flechitas.png)    
 
+## Requirements
 
-### **Archivos necesarios**
-Asegúrate de que los siguientes archivos estén en las rutas correctas:
-- Carpeta `data/`:
-  - `Animal.otf` (Fuente)
+### **Library**
+- **SFML** version 2.5.1 or higher.
+
+### **Necessary Files**
+Ensure the following files are in their correct locations:
+- `data/` folder:
+  - `Animal.otf` (Font)
   - `ChillGuyP.png`, `rotate.png`, `Speed.png` (Sprites)
-  - `MusicaFondo.ogg`, `NuevaLinea.ogg`, `ChillGuy.ogg` (Sonidos)
-  - `MaxPuntaje.txt` (Archivo para almacenar puntajes)
+  - `MusicaFondo.ogg`, `NuevaLinea.ogg`, `ChillGuy.ogg` (Sounds)
+  - `MaxPuntaje.txt` (File to store scores)
 
-## Organización del proyecto
-###TETRIS/  
-├── bin/  
-│   ├── Game.exe                  
-├── data/                
-│   ├── Animal.otf  
-│   ├── ChillGuyP.png  
-│   ├── MusicaFondo.ogg  
-│   ├── NuevaLinea.ogg  
-│   ├── MaxPuntaje.txt  
-├── docs/      
-│   ├── README.md              
-├── include/               
-│   ├── IU.hpp  
-│   ├── Sonido.hpp  
-│   ├── TetrisPartes.hpp  
-│   ├── TetrisTablero.hpp  
-├── src/                   
-│   ├── Main.cpp  
-│   ├── IU.cpp  
-│   ├── Sonido.cpp  
-│   ├── TetrisPartes.cpp  
-│   ├── TetrisTablero.cpp  
-└── Makefile             
+## Project Organization
+### TETRIS/   
+├── bin/    
+│   ├── Game.exe                    
+├── data/                  
+│   ├── Animal.otf    
+│   ├── ChillGuyP.png    
+│   ├── MusicaFondo.ogg    
+│   ├── NuevaLinea.ogg    
+│   ├── MaxPuntaje.txt    
+├── docs/        
+│   ├── README.md                
+├── include/                 
+│   ├── IU.hpp    
+│   ├── Sonido.hpp    
+│   ├── TetrisPartes.hpp    
+│   ├── TetrisTablero.hpp    
+├── src/                     
+│   ├── Main.cpp    
+│   ├── IU.cpp    
+│   ├── Sonido.cpp    
+│   ├── TetrisPartes.cpp    
+│   ├── TetrisTablero.cpp    
+└── Makefile  
