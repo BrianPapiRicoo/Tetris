@@ -46,7 +46,7 @@ Run the project directly from the **bin** folder and type the following in the b
 or manually using:   
 - **/bin/Game**  
 
-![Gameplay Preview](./GamePlay.png)  
+![Gameplay Preview](./GamePlaay.png)  
 
 ## Controls    
 - Right and Left Arrow -> Move the piece right or left    
