@@ -45,8 +45,12 @@ Ejecuta el proyecto directamente de la carpeta **bin** y escribe en la terminal 
 o manualmente usando:   
 - **/bin/Game**  
 
-![Vista previa del Gameplay](./GamePlay.png)
-
+![Vista previa del Gameplay](./GamePlay.png)  
+## Controles  
+- Flecha Derecha e Izquierda -> Mover la pieza a la derecha o izquierda  
+- Flecha hacia Arriba -> Rotar la pieza  
+- Flecha hacia Abajo -> Incrementa la velocidad de caida  
+![Vista previa de Controles](./Flechitas.png)  
 ## Requisitos
 
 ### **Biblioteca**

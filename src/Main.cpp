@@ -12,8 +12,10 @@ int main() {
     TetrisTablero tablero;
     IU iu;
     Sonido sonido;
+    Texture TexturaFondo;
     Texture TexturaChillGuy;
     Texture TexturaRotate;
+    Sprite SpriteFondo;
     Sprite SpriteChillGuy;
     Sprite SpriteRotate;
     Texture TexturaSpeed;
@@ -22,11 +24,14 @@ int main() {
     RenderWindow window(VideoMode(400, 400), "Tetrix");
     window.setFramerateLimit(60);
 
-    tablero.InstalarPartes();
-
-    int derecha = 0, izquierda = 0, arriba = 0;
-    int puntaje = 0;
-    int maxPuntaje = 0;
+    // Fondo
+    if (!TexturaFondo.loadFromFile("../data/Fondo.jpg")) {
+        cout << "Error al cargar la imagen 'Fondo.jpg'" << endl;
+        return -1;
+    }
+    SpriteFondo.setTexture(TexturaFondo);
+    SpriteFondo.setPosition(0, 0);
+    SpriteFondo.setScale(400.0f / TexturaFondo.getSize().x, 400.0f / TexturaFondo.getSize().y);
 
     // ChillGuy
     if (!TexturaChillGuy.loadFromFile("../data/ChillGuyP.png")) {
@@ -52,10 +57,16 @@ int main() {
         return -1;
     }
     SpriteSpeed.setTexture(TexturaSpeed);
-    SpriteSpeed.setPosition(205, 290); // Posicion ajustada
+    SpriteSpeed.setPosition(205, 290); 
     SpriteSpeed.setScale(0.17f, 0.17f);
 
-    // Leer el puntaje maximo
+    tablero.InstalarPartes();
+
+    int derecha = 0, izquierda = 0, arriba = 0;
+    int puntaje = 0;
+    int maxPuntaje = 0;
+
+    // Leer el puntaje máximo
     ifstream entrada("../data/MaxPuntaje.txt");
     entrada >> maxPuntaje;
 
@@ -81,7 +92,7 @@ int main() {
 
             // Acelerar
             if (Keyboard::isKeyPressed(Keyboard::Down)) {
-                tablero.ActualizarLimiteTimer(5); // Mas velocidad
+                tablero.ActualizarLimiteTimer(5); // Más velocidad
             } else {
                 tablero.ActualizarLimiteTimer(30); // Velocidad normal
             }
@@ -118,8 +129,12 @@ int main() {
                         iu.NuevoPuntajeMarcado();
                         ofstream salida("../data/MaxPuntaje.txt");
                         salida << puntaje;
+                        SpriteChillGuy.setPosition(50, 180);
+                        SpriteChillGuy.setScale(0.35f, 0.35f);
                         sonido.ReproducirNuevoPuntaje();
                     } else {
+                        SpriteChillGuy.setPosition(50, 180);
+                        SpriteChillGuy.setScale(0.35f, 0.35f);
                         iu.FinDeJuego();
                         sonido.ReproducirFinJuego();
                     }
@@ -138,13 +153,16 @@ int main() {
         iu.ActualizarColorTetrix();
         window.clear(Color(20, 20, 20));
 
+        // Dibujar fondo
+        window.draw(SpriteFondo);
+
         // Dibujar sprites
-        window.draw(SpriteChillGuy);
         window.draw(SpriteRotate);
         window.draw(SpriteSpeed);
 
         window.draw(tablero);
         window.draw(iu);
+        window.draw(SpriteChillGuy);
         window.display();
     }
 
