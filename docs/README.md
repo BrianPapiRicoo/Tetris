@@ -87,11 +87,15 @@ Ensure the following files are in their correct locations:
 │   ├── IU.hpp    
 │   ├── Sonido.hpp    
 │   ├── TetrisPartes.hpp    
-│   ├── TetrisTablero.hpp    
+│   ├── TetrisTablero.hpp   
+│   ├── MenuFinJuego.hpp      
 ├── src/                     
 │   ├── Main.cpp    
 │   ├── IU.cpp    
 │   ├── Sonido.cpp    
 │   ├── TetrisPartes.cpp    
-│   ├── TetrisTablero.cpp    
+│   ├── TetrisTablero.cpp  
+│   ├── MenuFinJuego.cpp      
 └── Makefile  
+## UML Diagram
+![UML](../data/UmlDiagram.png)  
