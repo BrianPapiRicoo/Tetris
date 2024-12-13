@@ -25,5 +25,6 @@ class IU : public Drawable {
         void FinDeJuego();
         void NuevoPuntajeMarcado();
         void ActualizarColorTetrix();
+        void ReiniciarEstado(); 
         virtual void draw(RenderTarget& target, RenderStates states) const override;
 };

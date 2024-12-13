@@ -6,30 +6,43 @@ Sonido::Sonido() {
     }
     Musica.setLoop(true);
     Musica.setVolume(15);
-    
+
     if (!BufferSonidoLinea.loadFromFile("../data/NuevaLinea.ogg")) {
         cout << "Error al cargar sonido de línea" << endl;
     }
-    
+
     if (!BufferSonidoNuevoPuntaje.loadFromFile("../data/ChillGuy.ogg")) {
         cout << "Error al cargar sonido de nuevo puntaje" << endl;
     }
-    
+
     if (!BufferSonidoFinJuego.loadFromFile("../data/ChillGuy.ogg")) {
         cout << "Error al cargar sonido de fin de juego" << endl;
     }
-    
+
     SonidoLinea.setBuffer(BufferSonidoLinea);
     SonidoNuevoPuntaje.setBuffer(BufferSonidoNuevoPuntaje);
     SonidoFinJuego.setBuffer(BufferSonidoFinJuego);
+
+    // Configuración inicial de volúmenes
+    SonidoLinea.setVolume(100);
+    SonidoNuevoPuntaje.setVolume(100);
+    SonidoFinJuego.setVolume(100);
 }
 
 void Sonido::ReproducirMusica() {
-    Musica.play();
+    if (Musica.getStatus() != sf::SoundSource::Playing) {
+        Musica.play();
+    }
 }
 
 void Sonido::PausarMusica() {
-    Musica.pause();
+    if (Musica.getStatus() == sf::SoundSource::Playing) {
+        Musica.pause();
+    }
+}
+
+void Sonido::DetenerMusica() {
+    Musica.stop();
 }
 
 void Sonido::ReproducirLinea() {
@@ -42,4 +55,20 @@ void Sonido::ReproducirNuevoPuntaje() {
 
 void Sonido::ReproducirFinJuego() {
     SonidoFinJuego.play();
+}
+
+void Sonido::DetenerEfectos() {
+    SonidoLinea.stop();
+    SonidoNuevoPuntaje.stop();
+    SonidoFinJuego.stop();
+}
+
+void Sonido::EstablecerVolumenMusica(float volumen) {
+    Musica.setVolume(volumen);
+}
+
+void Sonido::EstablecerVolumenEfectos(float volumen) {
+    SonidoLinea.setVolume(volumen);
+    SonidoNuevoPuntaje.setVolume(volumen);
+    SonidoFinJuego.setVolume(volumen);
 }

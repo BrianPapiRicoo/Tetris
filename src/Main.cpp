@@ -3,22 +3,30 @@
 #include "../include/TetrisTablero.hpp"
 #include "../include/IU.hpp"
 #include "../include/Sonido.hpp"
+#include "../include/MenuFinJuego.hpp"
 #include <fstream>
 
 using namespace std;
 using namespace sf;
 
+// Constantes para la posición y escala originales del sprite ChillGuy
+const Vector2f CHILLGUY_POS_ORIGINAL(265, 145);
+const Vector2f CHILLGUY_ESCALA_ORIGINAL(0.27f, 0.27f);
+
 int main() {
     TetrisTablero tablero;
     IU iu;
     Sonido sonido;
+    MenuFinJuego menuFinJuego;
+
     Texture TexturaFondo;
     Texture TexturaChillGuy;
     Texture TexturaRotate;
+    Texture TexturaSpeed;
+
     Sprite SpriteFondo;
     Sprite SpriteChillGuy;
     Sprite SpriteRotate;
-    Texture TexturaSpeed;
     Sprite SpriteSpeed;
 
     RenderWindow window(VideoMode(400, 400), "Tetrix");
@@ -39,8 +47,8 @@ int main() {
         return -1;
     }
     SpriteChillGuy.setTexture(TexturaChillGuy);
-    SpriteChillGuy.setPosition(265, 145);
-    SpriteChillGuy.setScale(0.27f, 0.27f);
+    SpriteChillGuy.setPosition(CHILLGUY_POS_ORIGINAL);
+    SpriteChillGuy.setScale(CHILLGUY_ESCALA_ORIGINAL);
 
     // Rotate
     if (!TexturaRotate.loadFromFile("../data/rotate.png")) {
@@ -48,7 +56,7 @@ int main() {
         return -1;
     }
     SpriteRotate.setTexture(TexturaRotate);
-    SpriteRotate.setPosition(300, 288); 
+    SpriteRotate.setPosition(300, 288);
     SpriteRotate.setScale(0.17f, 0.17f);
 
     // Speed
@@ -57,7 +65,7 @@ int main() {
         return -1;
     }
     SpriteSpeed.setTexture(TexturaSpeed);
-    SpriteSpeed.setPosition(205, 290); 
+    SpriteSpeed.setPosition(205, 290);
     SpriteSpeed.setScale(0.17f, 0.17f);
 
     tablero.InstalarPartes();
@@ -66,13 +74,15 @@ int main() {
     int puntaje = 0;
     int maxPuntaje = 0;
 
-    // Leer el puntaje máximo
+    // Leer el puntaje maximo
     ifstream entrada("../data/MaxPuntaje.txt");
     entrada >> maxPuntaje;
 
     iu.EstablecerMaxPuntaje(maxPuntaje);
     iu.EstablecerPuntaje(puntaje);
     bool live = true;
+    bool mostrandoMenu = false; 
+    bool esNuevoMaxPuntaje = false; 
     sonido.ReproducirMusica();
 
     while (window.isOpen()) {
@@ -103,9 +113,6 @@ int main() {
                 derecha = true;
             } else if (!Keyboard::isKeyPressed(Keyboard::Right)) {
                 derecha = false;
-            } else if (Keyboard::isKeyPressed(Keyboard::Right) && derecha) {
-                derecha++;
-                if (derecha == 6) derecha = 0;
             }
 
             // Izquierda
@@ -114,56 +121,90 @@ int main() {
                 izquierda = true;
             } else if (!Keyboard::isKeyPressed(Keyboard::Left)) {
                 izquierda = false;
-            } else if (Keyboard::isKeyPressed(Keyboard::Left) && izquierda) {
-                izquierda++;
-                if (izquierda == 6) izquierda = 0;
             }
 
             // Actualizar tablero
             if (tablero.ActualizarTablero()) {
                 if (!tablero.InstalarPartes()) {
                     live = false;
+                    mostrandoMenu = true; // Activar el menu
                     tablero.LimpiarTablero();
                     sonido.PausarMusica();
+
                     if (puntaje > maxPuntaje) {
-                        iu.NuevoPuntajeMarcado();
                         ofstream salida("../data/MaxPuntaje.txt");
                         salida << puntaje;
-                        SpriteChillGuy.setPosition(50, 180);
-                        SpriteChillGuy.setScale(0.35f, 0.35f);
+                        maxPuntaje = puntaje; // Actualizar maxPuntaje
+                        esNuevoMaxPuntaje = true; //nuevo puntaje maximo
                         sonido.ReproducirNuevoPuntaje();
                     } else {
-                        SpriteChillGuy.setPosition(50, 180);
-                        SpriteChillGuy.setScale(0.35f, 0.35f);
-                        iu.FinDeJuego();
+                        esNuevoMaxPuntaje = false;
                         sonido.ReproducirFinJuego();
                     }
                 }
             }
+
             tablero.ActualizarColoresTablero();
-            // Revisar líneas y actualizar puntaje
+
+           
             int nuevoPuntaje = tablero.RevisarLineas() * 5;
             puntaje += nuevoPuntaje;
             iu.EstablecerPuntaje(puntaje);
-            // Sonido línea
+
             if (nuevoPuntaje > 0) {
                 sonido.ReproducirLinea();
             }
+        } else if (mostrandoMenu) {
+            // Mostrar el menu
+            window.clear(Color(20, 20, 20));
+
+        if (esNuevoMaxPuntaje) {
+            menuFinJuego.MostrarMensaje(window, "New Max Score!", sf::Color::Green, 40, maxPuntaje);
+        } else {
+            menuFinJuego.MostrarMensaje(window, "Game Over", sf::Color::Red, 50);
         }
-        iu.ActualizarColorTetrix();
-        window.clear(Color(20, 20, 20));
 
-        // Dibujar fondo
-        window.draw(SpriteFondo);
+            menuFinJuego.MostrarOpciones(window);
+            window.display();
 
-        // Dibujar sprites
-        window.draw(SpriteRotate);
-        window.draw(SpriteSpeed);
+            if (Keyboard::isKeyPressed(Keyboard::LShift)) {
+                mostrandoMenu = false;
+                live = true;
 
-        window.draw(tablero);
-        window.draw(iu);
-        window.draw(SpriteChillGuy);
-        window.display();
+                sonido.DetenerEfectos();
+
+                tablero.LimpiarTablero();
+                puntaje = 0;
+                iu.EstablecerPuntaje(0);
+                iu.EstablecerMaxPuntaje(maxPuntaje);
+
+                
+                SpriteChillGuy.setPosition(CHILLGUY_POS_ORIGINAL);
+                SpriteChillGuy.setScale(CHILLGUY_ESCALA_ORIGINAL);
+
+                iu.ReiniciarEstado(); 
+                sonido.ReproducirMusica();
+            }
+
+            if (Keyboard::isKeyPressed(Keyboard::Space)) {
+                window.close();
+            }
+        }
+
+        if (live) {
+            iu.ActualizarColorTetrix();
+            window.clear(Color(20, 20, 20));
+
+            
+            window.draw(SpriteFondo);
+            window.draw(SpriteRotate);
+            window.draw(SpriteSpeed);
+            window.draw(tablero);
+            window.draw(iu);
+            window.draw(SpriteChillGuy);
+
+            window.display();
+        }
     }
 
     return 0;

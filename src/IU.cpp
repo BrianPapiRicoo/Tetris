@@ -7,12 +7,12 @@ IU::IU() {
 
     // Texto Titulo Tetrix
     TextoTituloTetrix.setFont(Fuente);
-    TextoTituloTetrix.setPosition(Vector2f(208, 10)); 
+    TextoTituloTetrix.setPosition(Vector2f(208, 10));
     TextoTituloTetrix.setString("TETRIX");
-    TextoTituloTetrix.setCharacterSize(50); 
-    TextoTituloTetrix.setFillColor(Color::Red); 
-    TextoTituloTetrix.setOutlineColor(Color::Black); 
-    TextoTituloTetrix.setOutlineThickness(2.0f);    
+    TextoTituloTetrix.setCharacterSize(50);
+    TextoTituloTetrix.setFillColor(Color::Red);
+    TextoTituloTetrix.setOutlineColor(Color::Black);
+    TextoTituloTetrix.setOutlineThickness(2.0f);
 
     // Texto Titulo Puntaje
     TextoTituloPuntaje.setFont(Fuente);
@@ -58,7 +58,7 @@ IU::IU() {
     TextoFinJuego.setFont(Fuente);
     TextoFinJuego.setFillColor(Color::White);
     TextoFinJuego.setPosition(Vector2f(31, 150));
-    TextoFinJuego.setString("Game Over ");
+    TextoFinJuego.setString("Game Over");
     TextoFinJuego.setCharacterSize(25);
     TextoFinJuego.setOutlineColor(Color::Black);
     TextoFinJuego.setOutlineThickness(2.0f);
@@ -67,18 +67,21 @@ IU::IU() {
     TextoNuevoPuntaje.setFont(Fuente);
     TextoNuevoPuntaje.setFillColor(Color::White);
     TextoNuevoPuntaje.setPosition(Vector2f(32, 150));
-    TextoNuevoPuntaje.setString("New Score");
+    TextoNuevoPuntaje.setString("New Score!");
     TextoNuevoPuntaje.setCharacterSize(25);
     TextoNuevoPuntaje.setOutlineColor(Color::Black);
     TextoNuevoPuntaje.setOutlineThickness(2.0f);
+
+    // Inicializar banderas
+    FinJuego = false;
+    NuevoPuntaje = false;
 }
 
 void IU::ActualizarColorTetrix() {
     static int contador = 0;
-    static int frameDelay = 30; 
+    static int frameDelay = 30;
 
     if (contador >= frameDelay) {
-      
         static int colorIndex = 0;
         switch (colorIndex % 3) {
             case 0: TextoTituloTetrix.setFillColor(Color::Red); break;
@@ -86,9 +89,9 @@ void IU::ActualizarColorTetrix() {
             case 2: TextoTituloTetrix.setFillColor(Color::Blue); break;
         }
         colorIndex++;
-        contador = 0; 
+        contador = 0;
     } else {
-        contador++; 
+        contador++;
     }
 }
 
@@ -110,10 +113,17 @@ void IU::EstablecerMaxPuntaje(int x) {
 
 void IU::FinDeJuego() {
     FinJuego = true;
+    NuevoPuntaje = false; // Asegurarse de no mostrar ambos mensajes
 }
 
 void IU::NuevoPuntajeMarcado() {
     NuevoPuntaje = true;
+    FinJuego = false; // Asegurarse de no mostrar ambos mensajes
+}
+
+void IU::ReiniciarEstado() {
+    FinJuego = false;
+    NuevoPuntaje = false;
 }
 
 void IU::draw(RenderTarget &target, RenderStates states) const {
