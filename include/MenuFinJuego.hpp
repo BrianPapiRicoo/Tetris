@@ -23,7 +23,6 @@ public:
     MenuFinJuego();
     void MostrarMensaje(sf::RenderWindow& window, const std::string& texto, const sf::Color& color, unsigned int size, int maxScore = -1);
     void MostrarOpciones(sf::RenderWindow& window);
-    void GestionarEntrada();
     bool JuegoReiniciado();
     bool SalirDelJuego();
 };

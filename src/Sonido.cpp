@@ -2,13 +2,13 @@
 
 Sonido::Sonido() {
     if (!Musica.openFromFile("../data/MusicaFondo.ogg")) {
-        cout << "Error al cargar música de fondo" << endl;
+        cout << "Error al cargar musica de fondo" << endl;
     }
     Musica.setLoop(true);
     Musica.setVolume(15);
 
     if (!BufferSonidoLinea.loadFromFile("../data/NuevaLinea.ogg")) {
-        cout << "Error al cargar sonido de línea" << endl;
+        cout << "Error al cargar sonido de linea" << endl;
     }
 
     if (!BufferSonidoNuevoPuntaje.loadFromFile("../data/ChillGuy.ogg")) {

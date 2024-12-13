@@ -15,13 +15,13 @@ MenuFinJuego::MenuFinJuego() {
     mensaje.setOutlineColor(sf::Color::Black);
     mensaje.setPosition(30, 20);
 
-    // Configurar el texto del puntaje máximo
+   
     maxScoreTexto.setFont(font);
     maxScoreTexto.setCharacterSize(25);
     maxScoreTexto.setFillColor(sf::Color::White);
     maxScoreTexto.setOutlineThickness(1.0f);
     maxScoreTexto.setOutlineColor(sf::Color::Black);
-    maxScoreTexto.setPosition(100, 60);  // Posición inicial (modificable dinámicamente)
+    maxScoreTexto.setPosition(100, 60);  
 
     // Configurar opciones
     opcionReiniciar.setFont(font);
@@ -36,26 +36,26 @@ MenuFinJuego::MenuFinJuego() {
     opcionSalir.setFillColor(sf::Color::White);
     opcionSalir.setPosition(60, 210);
 
-    // Cargar la textura del sprite ChillGuy
+    //textura ChillGuy
     if (!chillGuyTexture.loadFromFile("../data/ChillGuyP.png")) {
         std::cout << "Error al cargar la textura 'ChillGuyP.png'" << std::endl;
     }
     chillGuySprite.setTexture(chillGuyTexture);
     chillGuySprite.setPosition(130, 70); // Posición inicial del sprite
 
-    // Cargar la textura para el sprite Shift
+    //Shift
     if (!shiftTexture.loadFromFile("../data/Shift.png")) {
         std::cout << "Error al cargar la textura 'Shift.png'" << std::endl;
     }
     shiftSprite.setTexture(shiftTexture);
-    shiftSprite.setPosition(30, 150); // Posición inicial
+    shiftSprite.setPosition(30, 150); 
 
-    // Cargar la textura para el sprite Space
+    //Space
     if (!spaceTexture.loadFromFile("../data/Space.png")) {
         std::cout << "Error al cargar la textura 'Space.png'" << std::endl;
     }
     spaceSprite.setTexture(spaceTexture);
-    spaceSprite.setPosition(30, 240); // Posición inicial
+    spaceSprite.setPosition(30, 240); 
 }
 
 void MenuFinJuego::MostrarMensaje(sf::RenderWindow& window, const std::string& texto, const sf::Color& color, unsigned int size, int maxScore) {
@@ -64,28 +64,21 @@ void MenuFinJuego::MostrarMensaje(sf::RenderWindow& window, const std::string& t
     mensaje.setFillColor(color);
     mensaje.setCharacterSize(size);
     window.draw(mensaje);
-
-    // Si se pasa un puntaje máximo, mostrarlo
     if (maxScore != -1) {
         maxScoreTexto.setString("Max Score: " + std::to_string(maxScore));
         window.draw(maxScoreTexto);
     }
 
-    // Dibujar el sprite de ChillGuy
+    //ChillGuy
     window.draw(chillGuySprite);
 }
 
 void MenuFinJuego::MostrarOpciones(sf::RenderWindow& window) {
-    // Dibujar las opciones y los sprites correspondientes
+   
     window.draw(opcionReiniciar);
     window.draw(shiftSprite);
     window.draw(opcionSalir);
     window.draw(spaceSprite);
-}
-
-// Métodos de control de entrada
-void MenuFinJuego::GestionarEntrada() {
-    // Implementación de entrada del usuario (si es necesario)
 }
 
 bool MenuFinJuego::JuegoReiniciado() {

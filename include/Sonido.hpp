@@ -17,11 +17,11 @@ public:
     Sonido();
     void ReproducirMusica();
     void PausarMusica();
-    void DetenerMusica(); // Detiene la música de fondo
+    void DetenerMusica(); 
     void ReproducirLinea();
     void ReproducirNuevoPuntaje();
     void ReproducirFinJuego();
-    void DetenerEfectos(); // Detiene todos los efectos de sonido
+    void DetenerEfectos(); 
     void EstablecerVolumenMusica(float volumen);
     void EstablecerVolumenEfectos(float volumen);
 };
