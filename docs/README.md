@@ -52,7 +52,11 @@ or manually using:
 - Right and Left Arrow -> Move the piece right or left    
 - Up Arrow -> Rotate the piece    
 - Down Arrow -> Increases drop speed    
-![Controls Preview](./Flechitas.png)    
+![Controls Preview](./Flechitas.png)
+- Left Shift -> Restart when you lose  
+![Shift Key](../data/Shift.png)
+- Space -> Close the window (Exit)
+![Space Key](../data/Space.png)
 
 ## Requirements
 
